@@ -2,7 +2,6 @@ async function getWeather() {
     const locationInput = document.querySelector('#location-input');
     const enteredLocation = locationInput.value;
     const alphabetical = /[A-Za-z]/;
-    const fiveNums = /\d{5}/;
 
     try {
         let responseObj;
@@ -22,13 +21,15 @@ async function getWeather() {
     };
 };
 
+const fiveNums = /\d{5}/;
+const locationInput = document.querySelector('#location-input');
+locationInput.addEventListener('input', () => {
+    if ((locationInput.textLength === 5) && fiveNums.test(locationInput.value)) {
+        locationInput.setAttribute('maxlength', '5');
+    } else {
+        locationInput.removeAttribute('maxlength');
+    };
+});
+
 const locationBtn = document.querySelector('#location-btn');
 locationBtn.addEventListener('click', getWeather);
-
-// const moreThanFiveNums = /\d{6,}/;
-// const locationInput = document.querySelector('#location-input');
-// locationInput.addEventListener('input', () => {
-//     if (moreThanFiveNums) {
-//         console.log('more than five nums');
-//     };
-// });
