@@ -6,11 +6,11 @@ async function getWeather() {
     try {
         let responseObj;
         if (alphabetical.test(enteredLocation)) {
-            console.log('is a string')
-            responseObj = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${enteredLocation}&appid=145f93b6e84a1bae5151459d8af682a9`, { mode: 'cors' });
+            // console.log('is a string')
+            responseObj = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${enteredLocation}&appid=145f93b6e84a1bae5151459d8af682a9&units=imperial`, { mode: 'cors' });
         } else if (fiveNums.test(enteredLocation)) {
-            console.log('is a number')
-            responseObj = await fetch(`http://api.openweathermap.org/data/2.5/weather?zip=${enteredLocation}&appid=145f93b6e84a1bae5151459d8af682a9`, { mode: 'cors' });
+            // console.log('is a number')
+            responseObj = await fetch(`http://api.openweathermap.org/data/2.5/weather?zip=${enteredLocation}&appid=145f93b6e84a1bae5151459d8af682a9&units=imperial`, { mode: 'cors' });
         };
         console.log(responseObj);
         const jsObj = await responseObj.json();

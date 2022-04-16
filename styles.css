@@ -1,5 +1,25 @@
 body {
-  background-color: #808080;
+  display: grid;
+  grid-template-rows: auto 2fr 1fr 2fr 1fr;
+  height: 100vh;
+  margin: 0;
+  background: #bdc3c7;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #2c3e50, #bdc3c7);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #2c3e50, #bdc3c7);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+nav {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  align-content: center;
+  justify-items: center;
+  padding-right: 10%;
+  height: 45px;
+  background-color: #262626;
+  color: #8c8c8c;
 }
 
 input {

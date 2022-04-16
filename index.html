@@ -6,11 +6,18 @@
   </head>
 
   <body>
-    <form>
-      <span>Enter a location: </span>
-      <input type="text" placeholder="Search by city, state, or ZIP code" id="location-input" />
-      <button type="button" id="location-btn">Search</button>
-    </form>
+    <nav>
+      <span>Weather App</span>
+      <form>
+        <input type="text" placeholder="Search by city, state, or ZIP code" id="location-input" />
+        <button type="button" id="location-btn">Search</button>
+      </form>
+    </nav>
+
+    <div>Container 1 - Current weather</div>
+    <div>Container 2 (Subcontainer of Container 1) - 24 hour day forecast</div>
+    <div>Container 3 - Days of the week forecast</div>
+    <div>Container 4 - Air quality, rainfall, feels like, humidity</div>
 
     <script src="script.js"></script>
   </body>
