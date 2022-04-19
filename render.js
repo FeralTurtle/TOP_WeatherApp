@@ -29,6 +29,7 @@ const renderContainer2 = (weatherData) => {
     const popupClose = document.querySelector('.popup-close > span:nth-child(1)');
     const hourlyForecast = document.querySelector('.hourly-forecast');
 
+    //Weather alerts
     while (weatherAlerts.firstChild) {
         weatherAlerts.firstChild.remove();
     };
@@ -49,23 +50,26 @@ const renderContainer2 = (weatherData) => {
             weatherAlerts.append(newLi);
         };
     };
-
     popupClose.addEventListener('click', () => {
         descriptionPopup.style.display = 'none';
     });
 
+    //Hourly forecast
     while (hourlyForecast.firstChild) {
         hourlyForecast.firstChild.remove();
     };
-    //Hourly forecast
-    for (let i = 0; i < 7; i++) {
+    const date = new Date().toLocaleString('en-US', { timeZone: weatherData.timezone });
+    const hour = new Date(date);
+    let hourInt = hour.getHours();
+    for (let i = 0; i < 12; i++) {
         const contentsContainer = document.createElement('div');
         //Hour
         const hourDiv = document.createElement('div');
-        //Get currentHour, forEach element in hourly array, if currentHour matches element's hour, start array count from that index
-        const date = new Date(weatherData.hourly[i].dt * 1000);
-        const hour = new Date(date);
-        hourDiv.textContent = `${hour.getHours()}:00`;
+        if (hourInt == 24) {
+            hourInt = 0;
+        };
+        hourDiv.textContent = `${hourInt}:00`;
+        hourInt++;
         //Icon
         const hrIcon = document.createElement('img');
         const iconCode = weatherData.hourly[i].weather[0].icon;
@@ -79,11 +83,6 @@ const renderContainer2 = (weatherData) => {
         contentsContainer.append(degreesDiv);
         hourlyForecast.append(contentsContainer);
     };
-
-    const date = new Date(weatherData.current.dt * 1000);
-    const hour = new Date(date);
-    console.log('current hour:');
-    console.log(hour.getHours());
 };
 
 export { renderData };
