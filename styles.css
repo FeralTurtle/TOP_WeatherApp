@@ -1,16 +1,9 @@
-/* html {
-  height: 100%;
-} */
-
 body {
   display: grid;
   grid-template-rows: auto 2fr 1fr 2fr 1fr;
   height: 100vh;
   min-height: 100%;
   margin: 0;
-  /* background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed; */
   background: #bdc3c7;
   /* fallback for old browsers */
   background: -webkit-linear-gradient(to bottom, #2c3e50, #bdc3c7) fixed;
@@ -36,6 +29,9 @@ input {
 }
 
 /* Container 1 */
+.container-1 {
+  text-align: center;
+}
 
 /* Container 2 */
 .weather-alerts > li > a {
@@ -46,6 +42,12 @@ input {
 
 .weather-alerts > li > a:active {
   color: #000;
+}
+
+.hourly-forecast {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  text-align: center;
 }
 
 /* Container 3 */

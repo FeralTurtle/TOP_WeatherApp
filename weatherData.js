@@ -14,6 +14,7 @@ const getWeatherData = async () => {
 
     //Get location via Geocoding API
     let location;
+    let locationName;
     try {
         let responseObj;
         if (cityOrState) {
@@ -22,6 +23,7 @@ const getWeatherData = async () => {
             responseObj = await fetch(`http://api.openweathermap.org/geo/1.0/zip?zip=${enteredLocation}&appid=145f93b6e84a1bae5151459d8af682a9`, { mode: 'cors' });
         };
         location = await responseObj.json();
+        (cityOrState) ? locationName = location[0].name : locationName = location.name;
     } catch (error) {
         console.log('Error: Could not retrieve location data');
     };
@@ -40,8 +42,8 @@ const getWeatherData = async () => {
         console.log('Error: Could not retrieve weather data');
     };
 
-    console.log(comprehensiveForecast);
-    renderData(comprehensiveForecast); //parameters: comprehensiveForecast, airPollution
+    console.log(locationName, comprehensiveForecast);
+    renderData(locationName, comprehensiveForecast); //parameters: comprehensiveForecast, airPollution
 };
 
 export { getWeatherData };
