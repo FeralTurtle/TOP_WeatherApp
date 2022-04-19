@@ -61,7 +61,7 @@ const renderContainer2 = (weatherData) => {
     const date = new Date().toLocaleString('en-US', { timeZone: weatherData.timezone });
     const hour = new Date(date);
     let hourInt = hour.getHours();
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < 24; i++) {
         const contentsContainer = document.createElement('div');
         //Hour
         const hourDiv = document.createElement('div');
@@ -83,6 +83,8 @@ const renderContainer2 = (weatherData) => {
         contentsContainer.append(degreesDiv);
         hourlyForecast.append(contentsContainer);
     };
+
+    hourlyForecast.style.overflowX = 'scroll';
 };
 
 export { renderData };

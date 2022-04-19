@@ -43,7 +43,7 @@ const getWeatherData = async () => {
     };
 
     console.log(locationName, comprehensiveForecast);
-    renderData(locationName, comprehensiveForecast); //parameters: comprehensiveForecast, airPollution
+    renderData(locationName, comprehensiveForecast);
 };
 
 export { getWeatherData };
