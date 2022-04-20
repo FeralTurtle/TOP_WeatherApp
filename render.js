@@ -2,6 +2,7 @@ const renderData = (locationName, weatherData) => {
     console.log('render data');
     renderContainer1(locationName, weatherData);
     renderContainer2(weatherData);
+    renderContainer3(weatherData);
 };
 
 const renderContainer1 = (locationName, weatherData) => {
@@ -85,6 +86,30 @@ const renderContainer2 = (weatherData) => {
     };
 
     hourlyForecast.style.overflowX = 'scroll';
+};
+
+const renderContainer3 = (weatherData) => {
+    console.log('render container 3');
+    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
+    const container3 = document.querySelector('.container-3');
+
+    while (container3.firstChild) {
+        container3.firstChild.remove();
+    };
+    for (let i = 0; i < 7; i++) {
+        const iconCode = weatherData.daily[i].weather[0].icon;
+        const newDiv = document.createElement('div');
+        const day = document.createElement('span');
+        const img = document.createElement('img');
+        const tempRange = document.createElement('div');
+        day.textContent = days[i];
+        img.src = `http://openweathermap.org/img/wn/${iconCode}@2x.png`;
+        tempRange.textContent = `${weatherData.daily[i].temp.min} - ${weatherData.daily[i].temp.max}`;
+        newDiv.append(day);
+        newDiv.append(img);
+        newDiv.append(tempRange);
+        container3.append(newDiv);
+    };
 };
 
 export { renderData };

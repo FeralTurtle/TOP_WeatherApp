@@ -53,6 +53,19 @@ input {
 }
 
 /* Container 3 */
+.container-3 {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background-color: rgba(0,0,0, 0.2);
+  margin: 12px;
+  border-radius: 6px;
+}
+
+.container-3 > div {
+  display: grid;
+  justify-content: center;
+  text-align: center;
+}
 
 /* Container 4 */
 
