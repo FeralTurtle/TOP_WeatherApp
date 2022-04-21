@@ -20,4 +20,8 @@ locationInput.addEventListener('keydown', (event) => {
 });
 
 const locationBtn = document.querySelector('#location-btn');
-locationBtn.addEventListener('click', getWeatherData);
+locationBtn.addEventListener('click', () => {
+    if (!locationInput.value == '') {
+        getWeatherData();
+    };
+});

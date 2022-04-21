@@ -28,9 +28,9 @@ const getWeatherData = async () => {
             responseObj = await fetch(`http://api.openweathermap.org/geo/1.0/zip?zip=${enteredLocation}&appid=145f93b6e84a1bae5151459d8af682a9`, { mode: 'cors' });
         };
         location = await responseObj.json();
-        console.log(location);
         (cityOrState) ? locationName = location[0].name : locationName = location.name;
     } catch (error) {
+        loadingAnimation.style.display = 'none';
         console.log('Error: Could not retrieve location data');
         return;
     };
@@ -46,6 +46,7 @@ const getWeatherData = async () => {
         };
         weatherForecast = await responseObj.json();
     } catch (error) {
+        loadingAnimation.style.display = 'none';
         console.log('Error: Could not retrieve weather data');
         return;
     };
@@ -61,6 +62,7 @@ const getWeatherData = async () => {
         };
         airPollution = await responseObj.json();
     } catch (error) {
+        loadingAnimation.style.display = 'none';
         console.log('Error: Could not retrieve air pollution data');
         return;
     };
