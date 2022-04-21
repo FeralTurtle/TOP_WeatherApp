@@ -30,7 +30,18 @@ input {
 
 /* Container 1 */
 .container-1 {
+  padding-top: 42px;
   text-align: center;
+  font-size: 1.1rem;
+}
+
+.container-1 > .welcome-screen > a {
+  color: black;
+  font-size: .75rem;
+}
+
+.container-1 > .welcome-screen > div > img {
+  height: 200px;
 }
 
 /* Container 2 */
@@ -50,6 +61,7 @@ input {
   grid-auto-flow: column;
   width: 100vw;
   text-align: center;
+  padding-bottom: 4px;
 }
 
 /* Container 3 */
