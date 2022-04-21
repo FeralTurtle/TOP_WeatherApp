@@ -1,4 +1,5 @@
-import { getWeatherData } from "./weatherData.js";
+import { getWeatherData } from './weatherData.js';
+import { renderData } from './render.js';
 
 // Restrict user input when attempting to enter a ZIP code over 5 digits
 const fiveNums = /\d{5}/;
@@ -22,6 +23,10 @@ locationInput.addEventListener('keydown', (event) => {
 const locationBtn = document.querySelector('#location-btn');
 locationBtn.addEventListener('click', () => {
     if (!locationInput.value == '') {
-        getWeatherData();
+        const loadPage = async () => {
+            const weatherData = await getWeatherData();
+            renderData(...weatherData);
+        };
+        loadPage();
     };
 });

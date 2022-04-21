@@ -1,5 +1,3 @@
-import { renderData } from './render.js';
-
 const getWeatherData = async () => {
     const locationInput = document.querySelector('#location-input');
     const loadingAnimation = document.querySelector('.loading-animation');
@@ -14,7 +12,7 @@ const getWeatherData = async () => {
         zipCode = true;
     };
 
-    loadingAnimationText.textContent = 'Fetching data...';
+    loadingAnimationText.textContent = 'Fetching weather data...';
     loadingAnimation.style.display = 'block';
 
     //Get location via Geocoding API
@@ -67,8 +65,11 @@ const getWeatherData = async () => {
         return;
     };
 
+    console.log(weatherForecast);
     loadingAnimation.style.display = 'none';
-    renderData(locationName, weatherForecast, airPollution);
+
+    const weatherData = [locationName, weatherForecast, airPollution];
+    return weatherData;
 };
 
 export { getWeatherData };

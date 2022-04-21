@@ -1,38 +1,22 @@
-const getContainers = () => {
-    const container1 = document.querySelector('.container-1');
-    const weatherAlerts = document.querySelector('.weather-alerts');
-    const hourlyForecast = document.querySelector('.hourly-forecast');
-    const container3 = document.querySelector('.container-3');
-    const container4 = document.querySelector('.container-4');
-    const containers = [container1, weatherAlerts, hourlyForecast, container3, container4];
-    return containers;
-}
+import { changeBackground, clearPage, airQualityDescription } from './renderHelpers.js';
 
-const clearPage = () => {
-    const containers = getContainers();
-    containers.forEach(container => {
-        while (container.firstChild) {
-            container.firstChild.remove();
-        };
-    });
-};
-
-const renderData = (locationName, weatherData, airPollution) => {
+const renderData = (locationName, weatherForecast, airPollution) => {
     const loadingAnimation = document.querySelector('.loading-animation');
     clearPage();
+    changeBackground(weatherForecast);
     const loadingAnimationText = document.querySelector('.loading-animation > p');
     loadingAnimationText.textContent = 'Rendering page contents...';
     loadingAnimation.style.display = 'block';
-    renderContainer1(locationName, weatherData);
-    renderContainer2(weatherData);
-    renderContainer3(weatherData);
-    renderContainer4(airPollution, weatherData);
+    renderContainer1(locationName, weatherForecast);
+    renderContainer2(weatherForecast);
+    renderContainer3(weatherForecast);
+    renderContainer4(airPollution, weatherForecast);
     loadingAnimation.style.display = 'none';
 };
 
-const renderContainer1 = (locationName, weatherData) => {
-    const iconCode = weatherData.current.weather[0].icon;
-    const feelsLikeTemp = weatherData.current.feels_like;
+const renderContainer1 = (locationName, weatherForecast) => {
+    const iconCode = weatherForecast.current.weather[0].icon;
+    const feelsLikeTemp = weatherForecast.current.feels_like;
     const container1 = document.querySelector('.container-1');
     const newDiv = document.createElement('div');
     newDiv.classList.add('info');
@@ -46,17 +30,17 @@ const renderContainer1 = (locationName, weatherData) => {
 
     cityName.textContent = locationName;
     img.src = `http://openweathermap.org/img/wn/${iconCode}@2x.png`;
-    infoParagraph1.textContent = weatherData.current.weather[0].description;
-    infoParagraph2.textContent = weatherData.current.temp;
+    infoParagraph1.textContent = weatherForecast.current.weather[0].description;
+    infoParagraph2.textContent = weatherForecast.current.temp;
     infoParagraph3.textContent = `Feels like: ${feelsLikeTemp}`;
-    infoParagraph4.textContent = `Min: ${weatherData.daily[0].temp.min}. Max: ${weatherData.daily[0].temp.max}`;
+    infoParagraph4.textContent = `Min: ${weatherForecast.daily[0].temp.min}. Max: ${weatherForecast.daily[0].temp.max}`;
 
     tags.forEach(tag => newDiv.append(tag));
     container1.append(newDiv);
 };
 
-const renderContainer2 = (weatherData) => {
-    const alertsArray = weatherData.alerts;
+const renderContainer2 = (weatherForecast) => {
+    const alertsArray = weatherForecast.alerts;
     const weatherAlerts = document.querySelector('.weather-alerts');
     const descriptionPopup = document.querySelector('.description-popup');
     const descriptionPopupParagraph = document.querySelector('.description-popup > p');
@@ -70,11 +54,11 @@ const renderContainer2 = (weatherData) => {
         weatherAlerts.append(newLi);
         for (let i = 0; i < alertsArray.length; i++) {
             const newLi = document.createElement('li');
-            newLi.textContent = `${weatherData.alerts[i].sender_name}: `;
+            newLi.textContent = `${weatherForecast.alerts[i].sender_name}: `;
             const newA = document.createElement('a');
-            newA.textContent = weatherData.alerts[i].event;
+            newA.textContent = weatherForecast.alerts[i].event;
             newA.addEventListener('click', () => {
-                descriptionPopupParagraph.textContent = weatherData.alerts[i].description;
+                descriptionPopupParagraph.textContent = weatherForecast.alerts[i].description;
                 descriptionPopup.style.display = 'block';
             });
             newLi.append(newA);
@@ -86,7 +70,7 @@ const renderContainer2 = (weatherData) => {
     });
 
     //Hourly forecast
-    const date = new Date().toLocaleString('en-US', { timeZone: weatherData.timezone });
+    const date = new Date().toLocaleString('en-US', { timeZone: weatherForecast.timezone });
     const hour = new Date(date);
     let hourInt = hour.getHours();
     for (let i = 0; i < 24; i++) {
@@ -100,11 +84,11 @@ const renderContainer2 = (weatherData) => {
         hourInt++;
         //Icon
         const hrIcon = document.createElement('img');
-        const iconCode = weatherData.hourly[i].weather[0].icon;
+        const iconCode = weatherForecast.hourly[i].weather[0].icon;
         hrIcon.src = `http://openweathermap.org/img/wn/${iconCode}@2x.png`;
         //Degrees
         const degreesDiv = document.createElement('div');
-        degreesDiv.textContent = weatherData.hourly[i].temp;
+        degreesDiv.textContent = weatherForecast.hourly[i].temp;
 
         contentsContainer.append(hourDiv);
         contentsContainer.append(hrIcon);
@@ -115,19 +99,19 @@ const renderContainer2 = (weatherData) => {
     hourlyForecast.style.overflowX = 'scroll';
 };
 
-const renderContainer3 = (weatherData) => {
+const renderContainer3 = (weatherForecast) => {
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
     const container3 = document.querySelector('.container-3');
 
     for (let i = 0; i < 7; i++) {
-        const iconCode = weatherData.daily[i].weather[0].icon;
+        const iconCode = weatherForecast.daily[i].weather[0].icon;
         const newDiv = document.createElement('div');
         const day = document.createElement('span');
         const img = document.createElement('img');
         const tempRange = document.createElement('div');
         day.textContent = days[i];
         img.src = `http://openweathermap.org/img/wn/${iconCode}@2x.png`;
-        tempRange.textContent = `${weatherData.daily[i].temp.min} - ${weatherData.daily[i].temp.max}`;
+        tempRange.textContent = `${weatherForecast.daily[i].temp.min} - ${weatherForecast.daily[i].temp.max}`;
         newDiv.append(day);
         newDiv.append(img);
         newDiv.append(tempRange);
@@ -135,28 +119,12 @@ const renderContainer3 = (weatherData) => {
     };
 };
 
-
-const airQualityDescription = (airPollution) => {
-    switch (airPollution.list[0].main.aqi) {
-        case 1:
-            return 'Good';
-        case 2:
-            return 'Fair';
-        case 3:
-            return 'Moderate';
-        case 4:
-            return 'Poor';
-        case 5:
-            return 'Very Poor';
-    };
-};
-
-const renderContainer4 = (airPollution, weatherData) => {
+const renderContainer4 = (airPollution, weatherForecast) => {
     const airQualityIndex = airPollution.list[0].main.aqi;
     const aqDescription = airQualityDescription(airPollution);
     const container4 = document.querySelector('.container-4');
     const p1TextContents = ['Air quality index', 'Wind speed', 'Rain', 'Humidity'];
-    const p2TextContents = [`${airQualityIndex} - ${aqDescription}`, `${weatherData.current.wind_speed} metre/sec`, `${weatherData.daily[0].rain} mm`, `${weatherData.current.humidity}%`];
+    const p2TextContents = [`${airQualityIndex} - ${aqDescription}`, `${weatherForecast.current.wind_speed} metre/sec`, `${weatherForecast.daily[0].rain} mm`, `${weatherForecast.current.humidity}%`];
 
     for (let i = 0; i < 4; i++) {
         const newDiv = document.createElement('div');
