@@ -68,6 +68,17 @@ input {
 }
 
 /* Container 4 */
+.container-4 {
+  display: flex;
+  justify-content: space-around;
+  gap: 8px;
+}
+
+.container-4 > div {
+  border-radius: 15px;
+  padding: 25px 50px;
+  background-color: rgba(0,0,0, 0.05);
+}
 
 /* Description popup */
 .description-popup {

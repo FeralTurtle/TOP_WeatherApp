@@ -1,24 +1,38 @@
-const renderData = (locationName, weatherData) => {
+const renderData = (locationName, weatherData, airPollution) => {
     console.log('render data');
     renderContainer1(locationName, weatherData);
     renderContainer2(weatherData);
     renderContainer3(weatherData);
+    renderContainer4(airPollution, weatherData);
 };
 
 const renderContainer1 = (locationName, weatherData) => {
     console.log('render container 1');
     const iconCode = weatherData.current.weather[0].icon;
-    const cityName = document.querySelector('.container-1 > p:nth-child(1)');
-    const img = document.querySelector('.container-1 > img:nth-child(2)');
-    const infoParagraph1 = document.querySelector('.container-1 > .info > p:nth-child(1)');
-    const infoParagraph2 = document.querySelector('.container-1 > .info > p:nth-child(2)');
-    const infoParagraph3 = document.querySelector('.container-1 > .info > p:nth-child(3)');
+    const feelsLikeTemp = weatherData.current.feels_like;
+    const container1 = document.querySelector('.container-1');
+    const newDiv = document.createElement('div');
+    newDiv.classList.add('info');
+    const cityName = document.createElement('p');
+    const img = document.createElement('img');
+    const infoParagraph1 = document.createElement('p');
+    const infoParagraph2 = document.createElement('p');
+    const infoParagraph3 = document.createElement('p');
+    const infoParagraph4 = document.createElement('p');
+    const tags = [cityName, img, infoParagraph1, infoParagraph2, infoParagraph3, infoParagraph4];
 
+    while (container1.firstChild) {
+        container1.firstChild.remove();
+    };
     cityName.textContent = locationName;
     img.src = `http://openweathermap.org/img/wn/${iconCode}@2x.png`;
-    infoParagraph1.textContent = weatherData.current.temp;
-    infoParagraph2.textContent = weatherData.current.weather[0].description;
-    infoParagraph3.textContent = `Min: ${weatherData.daily[0].temp.min}. Max: ${weatherData.daily[0].temp.max}`;
+    infoParagraph1.textContent = weatherData.current.weather[0].description;
+    infoParagraph2.textContent = weatherData.current.temp;
+    infoParagraph3.textContent = `Feels like: ${feelsLikeTemp}`;
+    infoParagraph4.textContent = `Min: ${weatherData.daily[0].temp.min}. Max: ${weatherData.daily[0].temp.max}`;
+
+    tags.forEach(tag => newDiv.append(tag));
+    container1.append(newDiv);
 };
 
 const renderContainer2 = (weatherData) => {
@@ -78,7 +92,7 @@ const renderContainer2 = (weatherData) => {
         //Degrees
         const degreesDiv = document.createElement('div');
         degreesDiv.textContent = weatherData.hourly[i].temp;
-    
+
         contentsContainer.append(hourDiv);
         contentsContainer.append(hrIcon);
         contentsContainer.append(degreesDiv);
@@ -111,5 +125,45 @@ const renderContainer3 = (weatherData) => {
         container3.append(newDiv);
     };
 };
+
+
+const airQualityDescription = (airPollution) => {
+    switch (airPollution.list[0].main.aqi) {
+        case 1:
+            return 'Good';
+        case 2:
+            return 'Fair';
+        case 3:
+            return 'Moderate';
+        case 4:
+            return 'Poor';
+        case 5:
+            return 'Very Poor';
+    };
+};
+
+const renderContainer4 = (airPollution, weatherData) => {
+    console.log('render container 4');
+    const airQualityIndex = airPollution.list[0].main.aqi;
+    const aqDescription = airQualityDescription(airPollution);
+    const container4 = document.querySelector('.container-4');
+    const p1TextContents = ['Air quality index', 'Wind speed', 'Rain', 'Humidity'];
+    const p2TextContents = [`${airQualityIndex} - ${aqDescription}`, `${weatherData.current.wind_speed} metre/sec`, `${weatherData.daily[0].rain} mm`, `${weatherData.current.humidity}%`];
+
+    while (container4.firstChild) {
+        container4.firstChild.remove();
+    };
+    for (let i = 0; i < 4; i++) {
+        const newDiv = document.createElement('div');
+        const p1 = document.createElement('p');
+        const p2 = document.createElement('p');
+        p1.textContent = p1TextContents[i];
+        p2.textContent = p2TextContents[i];
+        newDiv.append(p1);
+        newDiv.append(p2);
+        container4.append(newDiv);
+    };
+};
+
 
 export { renderData };

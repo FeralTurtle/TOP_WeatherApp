@@ -23,13 +23,14 @@ const getWeatherData = async () => {
             responseObj = await fetch(`http://api.openweathermap.org/geo/1.0/zip?zip=${enteredLocation}&appid=145f93b6e84a1bae5151459d8af682a9`, { mode: 'cors' });
         };
         location = await responseObj.json();
+        console.log(location);
         (cityOrState) ? locationName = location[0].name : locationName = location.name;
     } catch (error) {
         console.log('Error: Could not retrieve location data');
     };
 
     //Get comprehensive weather forecast via One Call API
-    let comprehensiveForecast;
+    let weatherForecast;
     try {
         let responseObj;
         if (cityOrState) {
@@ -37,13 +38,26 @@ const getWeatherData = async () => {
         } else if (zipCode) {
             responseObj = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${location.lat}&lon=${location.lon}&exclude=minutely&appid=145f93b6e84a1bae5151459d8af682a9&units=imperial`, { mode: 'cors' });
         };
-        comprehensiveForecast = await responseObj.json();
+        weatherForecast = await responseObj.json();
     } catch (error) {
         console.log('Error: Could not retrieve weather data');
     };
 
-    console.log(locationName, comprehensiveForecast);
-    renderData(locationName, comprehensiveForecast);
+    //Get air pollution data vs Air Pollution API
+    let airPollution;
+    try {
+        let responseObj;
+        if (cityOrState) {
+            responseObj = await fetch(`http://api.openweathermap.org/data/2.5/air_pollution?lat=${location[0].lat}&lon=${location[0].lon}&appid=145f93b6e84a1bae5151459d8af682a9&units=imperial`, { mode: 'cors' });
+        } else if (zipCode) {
+            responseObj = await fetch(`http://api.openweathermap.org/data/2.5/air_pollution?lat=${location.lat}&lon=${location.lon}&appid=145f93b6e84a1bae5151459d8af682a9&units=imperial`, { mode: 'cors' });
+        };
+        airPollution = await responseObj.json();
+    } catch (error) {
+        console.log('Error: Could not retrieve air pollution data');
+    };
+    console.log(locationName, weatherForecast, airPollution);
+    renderData(locationName, weatherForecast, airPollution);
 };
 
 export { getWeatherData };
