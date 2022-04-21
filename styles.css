@@ -124,3 +124,20 @@ input {
   text-align: center;
  }
  
+ /* Loading animation */
+ .loading-animation {
+   display: none;
+   position: absolute;
+   left: 50%;
+   top: 50%;
+   transform: translate(-50%, -50%);
+   padding: 12px 0px;
+   border-radius: 12px;
+   background-color: #d3d3d3;
+ }
+
+ .loading-animation > p {
+   margin: 0;
+   font-size: .75rem;
+   text-align: center;
+ }

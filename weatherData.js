@@ -2,6 +2,8 @@ import { renderData } from './render.js';
 
 const getWeatherData = async () => {
     const locationInput = document.querySelector('#location-input');
+    const loadingAnimation = document.querySelector('.loading-animation');
+    const loadingAnimationText = document.querySelector('.loading-animation > p');
     const enteredLocation = locationInput.value;
     const alphabetical = /[A-Za-z]/;
     const fiveNums = /\d{5}/;
@@ -11,6 +13,9 @@ const getWeatherData = async () => {
     } else if (fiveNums.test(enteredLocation)) {
         zipCode = true;
     };
+
+    loadingAnimationText.textContent = 'Fetching data...';
+    loadingAnimation.style.display = 'block';
 
     //Get location via Geocoding API
     let location;
@@ -27,6 +32,7 @@ const getWeatherData = async () => {
         (cityOrState) ? locationName = location[0].name : locationName = location.name;
     } catch (error) {
         console.log('Error: Could not retrieve location data');
+        return;
     };
 
     //Get comprehensive weather forecast via One Call API
@@ -41,6 +47,7 @@ const getWeatherData = async () => {
         weatherForecast = await responseObj.json();
     } catch (error) {
         console.log('Error: Could not retrieve weather data');
+        return;
     };
 
     //Get air pollution data vs Air Pollution API
@@ -55,8 +62,10 @@ const getWeatherData = async () => {
         airPollution = await responseObj.json();
     } catch (error) {
         console.log('Error: Could not retrieve air pollution data');
+        return;
     };
-    console.log(locationName, weatherForecast, airPollution);
+
+    loadingAnimation.style.display = 'none';
     renderData(locationName, weatherForecast, airPollution);
 };
 
