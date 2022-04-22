@@ -54,9 +54,9 @@ const getWeatherData = async () => {
     try {
         let responseObj;
         if (cityOrState) {
-            responseObj = await fetch(`http://api.openweathermap.org/data/2.5/air_pollution?lat=${location[0].lat}&lon=${location[0].lon}&appid=145f93b6e84a1bae5151459d8af682a9&units=imperial`, { mode: 'cors' });
+            responseObj = await fetch(`https://api.openweathermap.org/data/2.5/air_pollution?lat=${location[0].lat}&lon=${location[0].lon}&appid=145f93b6e84a1bae5151459d8af682a9&units=imperial`, { mode: 'cors' });
         } else if (zipCode) {
-            responseObj = await fetch(`http://api.openweathermap.org/data/2.5/air_pollution?lat=${location.lat}&lon=${location.lon}&appid=145f93b6e84a1bae5151459d8af682a9&units=imperial`, { mode: 'cors' });
+            responseObj = await fetch(`https://api.openweathermap.org/data/2.5/air_pollution?lat=${location.lat}&lon=${location.lon}&appid=145f93b6e84a1bae5151459d8af682a9&units=imperial`, { mode: 'cors' });
         };
         airPollution = await responseObj.json();
     } catch (error) {
