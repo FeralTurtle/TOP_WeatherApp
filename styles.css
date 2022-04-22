@@ -6,78 +6,6 @@ body {
   margin: 0;
 }
 
-.default {
-  background: #bdc3c7;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to bottom, #2c3e50, #bdc3c7) fixed;  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to bottom, #2c3e50, #bdc3c7) fixed; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
-
-/* Backgrounds - Day */
-.clear-day {
-  background: #2980B9;
-  background: -webkit-linear-gradient(to top, #FFFFFF, #6DD5FA, #2980B9) fixed;
-  background: linear-gradient(to top, #FFFFFF, #6DD5FA, #2980B9) fixed;
-}
-
-.cloudy-day {
-  background: #2980B9;
-  background: -webkit-linear-gradient(to top, #FFFFFF, #bdc3c7, #2980B9) fixed;
-  background: linear-gradient(to top, #FFFFFF, #bdc3c7, #2980B9) fixed;
-}
-
-.rainy-day {
-  background: #304352;
-  background: -webkit-linear-gradient(to top, #d7d2cc, #304352) fixed;
-  background: linear-gradient(to top, #d7d2cc, #304352) fixed;
-}
-
-.snowy-day {
-  background: #E0EAFC;
-  background: -webkit-linear-gradient(to top, #CFDEF3, #E0EAFC, #bdc3c7) fixed;
-  background: linear-gradient(to top, #CFDEF3, #E0EAFC, #bdc3c7) fixed;
-}
-
-.misty-day {
-  background: #bdc3c7;
-  background: -webkit-linear-gradient(to top, #bdc3c7, #5c5f61) fixed;
-  background: linear-gradient(to top, #bdc3c7, #5c5f61) fixed;
-}
-
-/* Backgrounds - Night */
-.clear-night {
-  color: #fff;
-  background: #0F2027;
-  background: -webkit-linear-gradient(to top, #2C5364, #192e35, #102129) fixed;
-  background: linear-gradient(to top, #2C5364, #192e35, #102129) fixed;
-}
-
-.cloudy-night {
-  color: #fff;
-  background: #0F2027;
-  background: -webkit-linear-gradient(to top, #2C5364, #5c5f61, #102129) fixed;
-  background: linear-gradient(to top, #2C5364, #5c5f61, #102129) fixed;
-}
-
-.rainy-night {
-  background: #304352;
-  background: -webkit-linear-gradient(to top, #34464d, #212e38) fixed;
-  background: linear-gradient(to top, #34464d, #212e38) fixed;
-}
-
-.snowy-night {
-  color: #fff;
-  background: #11242c;
-  background: -webkit-linear-gradient(to top, #242e33, #5c5f61, #19333f) fixed;
-  background: linear-gradient(to top, #242e33, #5c5f61, #19333f) fixed;
-}
-
-.misty-night {
-  color: #fff;
-  background: #0F2027;
-  background: -webkit-linear-gradient(to top, #212e38, #484b4d, #333435) fixed;
-  background: linear-gradient(to top, #212e38, #484b4d, #333435) fixed;
-}
-
 /* Header */
 nav {
   display: grid;
@@ -207,3 +135,76 @@ input {
    font-size: .75rem;
    text-align: center;
  }
+
+ /* Background */
+ .default {
+  background: #bdc3c7;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #2c3e50, #bdc3c7) fixed;  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #2c3e50, #bdc3c7) fixed; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+/* Backgrounds - Day */
+.clear-day {
+  background: #2980B9;
+  background: -webkit-linear-gradient(to top, #FFFFFF, #6DD5FA, #2980B9) fixed;
+  background: linear-gradient(to top, #FFFFFF, #6DD5FA, #2980B9) fixed;
+}
+
+.cloudy-day {
+  background: #2980B9;
+  background: -webkit-linear-gradient(to top, #FFFFFF, #bdc3c7, #2980B9) fixed;
+  background: linear-gradient(to top, #FFFFFF, #bdc3c7, #2980B9) fixed;
+}
+
+.rainy-day {
+  background: #304352;
+  background: -webkit-linear-gradient(to top, #d7d2cc, #304352) fixed;
+  background: linear-gradient(to top, #d7d2cc, #304352) fixed;
+}
+
+.snowy-day {
+  background: #E0EAFC;
+  background: -webkit-linear-gradient(to top, #CFDEF3, #E0EAFC, #bdc3c7) fixed;
+  background: linear-gradient(to top, #CFDEF3, #E0EAFC, #bdc3c7) fixed;
+}
+
+.misty-day {
+  background: #bdc3c7;
+  background: -webkit-linear-gradient(to top, #bdc3c7, #5c5f61) fixed;
+  background: linear-gradient(to top, #bdc3c7, #5c5f61) fixed;
+}
+
+/* Backgrounds - Night */
+.clear-night {
+  color: #fff;
+  background: #0F2027;
+  background: -webkit-linear-gradient(to top, #2C5364, #192e35, #102129) fixed;
+  background: linear-gradient(to top, #2C5364, #192e35, #102129) fixed;
+}
+
+.cloudy-night {
+  color: #fff;
+  background: #0F2027;
+  background: -webkit-linear-gradient(to top, #2C5364, #5c5f61, #102129) fixed;
+  background: linear-gradient(to top, #2C5364, #5c5f61, #102129) fixed;
+}
+
+.rainy-night {
+  background: #304352;
+  background: -webkit-linear-gradient(to top, #34464d, #212e38) fixed;
+  background: linear-gradient(to top, #34464d, #212e38) fixed;
+}
+
+.snowy-night {
+  color: #fff;
+  background: #11242c;
+  background: -webkit-linear-gradient(to top, #242e33, #5c5f61, #19333f) fixed;
+  background: linear-gradient(to top, #242e33, #5c5f61, #19333f) fixed;
+}
+
+.misty-night {
+  color: #fff;
+  background: #0F2027;
+  background: -webkit-linear-gradient(to top, #212e38, #484b4d, #333435) fixed;
+  background: linear-gradient(to top, #212e38, #484b4d, #333435) fixed;
+}

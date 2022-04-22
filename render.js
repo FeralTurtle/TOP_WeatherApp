@@ -29,7 +29,7 @@ const renderContainer1 = (locationName, weatherForecast) => {
     const tags = [cityName, img, infoParagraph1, infoParagraph2, infoParagraph3, infoParagraph4];
 
     cityName.textContent = locationName;
-    img.src = `http://openweathermap.org/img/wn/${iconCode}@2x.png`;
+    img.src = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
     infoParagraph1.textContent = weatherForecast.current.weather[0].description;
     infoParagraph2.textContent = weatherForecast.current.temp;
     infoParagraph3.textContent = `Feels like: ${feelsLikeTemp}`;
@@ -85,7 +85,7 @@ const renderContainer2 = (weatherForecast) => {
         //Icon
         const hrIcon = document.createElement('img');
         const iconCode = weatherForecast.hourly[i].weather[0].icon;
-        hrIcon.src = `http://openweathermap.org/img/wn/${iconCode}@2x.png`;
+        hrIcon.src = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
         //Degrees
         const degreesDiv = document.createElement('div');
         degreesDiv.textContent = weatherForecast.hourly[i].temp;
@@ -110,7 +110,7 @@ const renderContainer3 = (weatherForecast) => {
         const img = document.createElement('img');
         const tempRange = document.createElement('div');
         day.textContent = days[i];
-        img.src = `http://openweathermap.org/img/wn/${iconCode}@2x.png`;
+        img.src = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
         tempRange.textContent = `${weatherForecast.daily[i].temp.min} - ${weatherForecast.daily[i].temp.max}`;
         newDiv.append(day);
         newDiv.append(img);

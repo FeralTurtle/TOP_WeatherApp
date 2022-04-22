@@ -65,7 +65,6 @@ const getWeatherData = async () => {
         return;
     };
 
-    console.log(weatherForecast);
     loadingAnimation.style.display = 'none';
 
     const weatherData = [locationName, weatherForecast, airPollution];
