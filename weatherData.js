@@ -21,9 +21,9 @@ const getWeatherData = async () => {
     try {
         let responseObj;
         if (cityOrState) {
-            responseObj = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${enteredLocation}&limit=1&appid=145f93b6e84a1bae5151459d8af682a9`, { mode: 'cors' });
+            responseObj = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${enteredLocation}&limit=1&appid=145f93b6e84a1bae5151459d8af682a9`, { mode: 'cors' });
         } else if (zipCode) {
-            responseObj = await fetch(`http://api.openweathermap.org/geo/1.0/zip?zip=${enteredLocation}&appid=145f93b6e84a1bae5151459d8af682a9`, { mode: 'cors' });
+            responseObj = await fetch(`https://api.openweathermap.org/geo/1.0/zip?zip=${enteredLocation}&appid=145f93b6e84a1bae5151459d8af682a9`, { mode: 'cors' });
         };
         location = await responseObj.json();
         (cityOrState) ? locationName = location[0].name : locationName = location.name;
